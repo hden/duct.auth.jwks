@@ -6,7 +6,9 @@ A Duct library to retrieve RSA public keys from a JWKS (JSON Web Key Set) endpoi
 
 To install, add the following to your project `:dependencies`:
 
+```
 [hden/duct.auth.jwks "0.1.0-SNAPSHOT"]
+```
 
 ## Usage
 
