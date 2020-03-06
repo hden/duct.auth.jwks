@@ -1,4 +1,4 @@
-# duct.auth.jwks
+# duct.auth.jwks [![CircleCI](https://circleci.com/gh/hden/duct.auth.jwks.svg?style=svg)](https://circleci.com/gh/hden/duct.auth.jwks)
 
 A Duct library to retrieve RSA public keys from a JWKS (JSON Web Key Set) endpoint.
 
