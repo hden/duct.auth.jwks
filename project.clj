@@ -9,6 +9,6 @@
   :repl-options {:init-ns duct.auth.jwks}
   :profiles
   {:dev {:dependencies [[ring/ring-mock "0.4.0"]
-                        [duct/middleware.buddy "0.1.0"
+                        [duct/middleware.buddy "0.2.0"
                          :exclusions [buddy/buddy-auth]]
                         [buddy/buddy-auth "2.2.0"]]}})
