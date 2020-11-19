@@ -4,7 +4,7 @@
   :license {:name "EPL-2.0"
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [[org.clojure/clojure "1.10.1"]
-                 [com.auth0/jwks-rsa "0.14.0"]
+                 [com.auth0/jwks-rsa "0.15.0"]
                  [integrant "0.8.0"]]
   :repl-options {:init-ns duct.auth.jwks}
   :profiles
