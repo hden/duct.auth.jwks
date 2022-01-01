@@ -7,7 +7,7 @@ A Duct library to retrieve RSA public keys from a JWKS (JSON Web Key Set) endpoi
 To install, add the following to your project `:dependencies`:
 
 ```
-[hden/duct.auth.jwks "0.1.0-SNAPSHOT"]
+[hden/duct.auth.jwks "0.2.0"]
 ```
 
 ## Usage
@@ -19,8 +19,8 @@ This library currently only supports a single Integrant key: `:duct.auth.jwks/pr
  {:backend :jws
   :token-name "Bearer"
   :options {:alg :rs256}
-  :secret  #ig/ref :duct.auth.jwks/provider
-  :authfn  #ig/ref :example.auth/auth-function}
+  :secret #ig/ref :duct.auth.jwks/provider
+  :authfn #ig/ref :example.auth/auth-function}
 
  :duct.auth.jwks/provider
  {:domain "https://samples.auth0.com/"}
