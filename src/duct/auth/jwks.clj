@@ -1,13 +1,12 @@
 (ns duct.auth.jwks
   (:require [integrant.core :as ig]
-            [buddy.sign.jws :as jws])
-  (:import [com.auth0.jwk JwkProviderBuilder]))
+            [buddy.auth :refer [throw-unauthorized]])
+  (:import [com.auth0.jwk JwkProviderBuilder SigningKeyNotFoundException]))
 
-(defn create-provider [{:keys [domain]}]
-  (.build (JwkProviderBuilder. domain)))
-
-(defmethod ig/init-key :duct.auth.jwks/provider
-  [_ config]
-  (let [provider (create-provider config)]
+(defmethod ig/init-key :duct.auth.jwks/provider [_ {:keys [domain]}]
+  (let [provider (.build (JwkProviderBuilder. domain))]
     (fn [{:keys [kid]}]
-      (.getPublicKey (.get provider kid)))))
+      (try
+        (.getPublicKey (.get provider kid))
+        (catch SigningKeyNotFoundException ex
+          (throw-unauthorized (Throwable->map ex)))))))
