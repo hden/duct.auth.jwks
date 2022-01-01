@@ -1,6 +1,6 @@
 (ns duct.auth.jwks-test
   (:require [clojure.test :refer [deftest testing is]]
-            [duct.auth.jwks]
+            [duct.auth.jwks :as jwks]
             [integrant.core :as ig])
   (:import [java.security.interfaces RSAPublicKey]))
 
@@ -9,11 +9,11 @@
 
 (deftest provider-test
   (testing "provider"
-    (let [f (ig/init-key :duct.auth.jwks/provider config)
+    (let [f   (ig/init-key ::jwks/provider config)
           key (f {:kid kid})]
       (is (instance? RSAPublicKey key))))
 
   (testing "key not found exception"
-    (let [f (ig/init-key :duct.auth.jwks/provider config)]
+    (let [f (ig/init-key ::jwks/provider config)]
       (is (thrown-with-msg? clojure.lang.ExceptionInfo #"Unauthorized."
                             (f {:kid "no such key"}))))))

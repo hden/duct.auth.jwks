@@ -1,4 +1,4 @@
-(defproject hden/duct.auth.jwks "0.2.0"
+(defproject hden/duct.auth.jwks "0.2.1"
   :description "FIXME: write description"
   :url "https://github.com/hden/duct.auth.jwks"
   :license {:name "EPL-2.0"
