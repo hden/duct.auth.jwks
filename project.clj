@@ -5,6 +5,6 @@
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [[org.clojure/clojure "1.10.3"]
                  [buddy/buddy-auth "3.0.323"]
-                 [com.auth0/jwks-rsa "0.20.2"]
+                 [com.auth0/jwks-rsa "0.21.0"]
                  [integrant "0.8.0"]]
   :repl-options {:init-ns duct.auth.jwks})
