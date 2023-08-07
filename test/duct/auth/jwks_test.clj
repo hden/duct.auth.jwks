@@ -4,16 +4,28 @@
             [integrant.core :as ig])
   (:import [java.security.interfaces RSAPublicKey]))
 
-(def ^:private config {:domain "https://samples.auth0.com/"})
-(def ^:private ^:const kid "NkJCQzIyQzRBMEU4NjhGNUU4MzU4RkY0M0ZDQzkwOUQ0Q0VGNUMwQg")
+(deftest domain-provider-test
+  (let [config {:domain "https://samples.auth0.com/"}
+        kid "NkJCQzIyQzRBMEU4NjhGNUU4MzU4RkY0M0ZDQzkwOUQ0Q0VGNUMwQg"]
+    (testing "provider"
+      (let [f   (ig/init-key ::jwks/provider config)
+            key (f {:kid kid})]
+        (is (instance? RSAPublicKey key))))
 
-(deftest provider-test
-  (testing "provider"
-    (let [f   (ig/init-key ::jwks/provider config)
-          key (f {:kid kid})]
-      (is (instance? RSAPublicKey key))))
+    (testing "key not found exception"
+      (let [f (ig/init-key ::jwks/provider config)]
+        (is (thrown-with-msg? clojure.lang.ExceptionInfo #"Unauthorized."
+                              (f {:kid "no such key"})))))))
 
-  (testing "key not found exception"
-    (let [f (ig/init-key ::jwks/provider config)]
-      (is (thrown-with-msg? clojure.lang.ExceptionInfo #"Unauthorized."
-                            (f {:kid "no such key"}))))))
+(deftest url-provider-test
+  (let [config {:url "https://www.googleapis.com/oauth2/v3/certs"}
+        kid "fd48a75138d9d48f0aa635ef569c4e196f7ae8d6"]
+    (testing "provider"
+      (let [f   (ig/init-key ::jwks/provider config)
+            key (f {:kid kid})]
+        (is (instance? RSAPublicKey key))))
+
+    (testing "key not found exception"
+      (let [f (ig/init-key ::jwks/provider config)]
+        (is (thrown-with-msg? clojure.lang.ExceptionInfo #"Unauthorized."
+                              (f {:kid "no such key"})))))))
