@@ -19,7 +19,7 @@
 
 (deftest url-provider-test
   (let [config {:url "https://www.googleapis.com/oauth2/v3/certs"}
-        kid "fd48a75138d9d48f0aa635ef569c4e196f7ae8d6"]
+        kid "e1b93c640144b84bd05bf296d67262b6bc61a487"]
     (testing "provider"
       (let [f   (ig/init-key ::jwks/provider config)
             key (f {:kid kid})]
