@@ -6,5 +6,5 @@
   :dependencies [[org.clojure/clojure "1.11.1"]
                  [buddy/buddy-auth "3.0.323"]
                  [com.auth0/jwks-rsa "0.22.1"]
-                 [integrant "0.8.1"]]
+                 [integrant "0.9.0"]]
   :repl-options {:init-ns duct.auth.jwks})
